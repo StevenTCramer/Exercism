@@ -8,13 +8,9 @@ pub fn verse(n: u32) -> String {
 }
 
 pub fn sing(start: u32, end: u32) -> String {
-    let mut song: String = "".to_owned();
-    for i in (end..=start).rev()  {
-        song.push_str(verse(i).as_str());
-        if i > end
-        {
-            song.push_str("\n");
-        }
-    }
-    song
+    (end..=start)
+        .rev()
+        .map(verse)
+        .collect::<Vec<String>>()
+        .join("\n")
 }
