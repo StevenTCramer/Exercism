@@ -1,14 +1,14 @@
-pub fn build_proverb(list: &[&str]) -> String {
-    let mut result = String::new();
+use std::iter::once;
 
-    for (index, &item) in list.iter().enumerate() {
-        if index == list.len() - 1 {
-            result.push_str(format!("And all for the want of a {}.", list[0]).as_str());
-        } else {
-            result.push_str(
-                format!("For want of a {} the {} was lost.\n", item, list[index + 1]).as_str(),
-            );
-        }
+pub fn build_proverb(list: &[&str]) -> String {
+    match list.len() {
+        0 => String::new(),
+        _ => 
+            list
+                .windows(2)
+                .map(|win| format!("For want of a {} the {} was lost.", win[0], win[1]))
+                .chain(once(format!("And all for the want of a {}.", list[0])))
+                .collect::<Vec<String>>()
+                .join("\n")
     }
-    result
 }
