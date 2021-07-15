@@ -1,8 +1,7 @@
 pub fn square_of_sum(n: u32) -> u32 {
     let x = n * (n + 1) / 2;
     x * x
-    // let x: u32 = (1..=n).sum();
-    // x * x
+    //  (1..=n).sum::<u32>().pow(2)
 }
 
 pub fn sum_of_squares(n: u32) -> u32 {
